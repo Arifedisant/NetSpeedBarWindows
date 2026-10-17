@@ -12,7 +12,7 @@ Ditulis dengan Python (psutil + Pillow + tkinter), satu file, tanpa installer. P
 TrafficMonitor.
 
 Saudaranya: [Claude Code Usage Bar untuk Windows](https://github.com/Arifedisant/ClaudeCodeUsageBarWindows),
-sisa jatah Claude Code. Kalau keduanya dipasang, Net Speed Bar otomatis menempel di sebelah kanannya.
+sisa jatah Claude Code. Kalau keduanya dipasang, Net Speed Bar otomatis menempel di sebelah kirinya.
 
 ## Fitur
 

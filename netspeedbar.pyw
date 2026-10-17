@@ -447,22 +447,24 @@ class NetSpeedBar:
                 max(0, min(y, self.root.winfo_screenheight() - h)))
 
     def _default_position(self):
-        """Just right of the Claude usage widget, else near the clock."""
+        """Just left of the Claude usage widget, else before the tray."""
         w, h = self._size()
         rect = taskbar_rect()
         if rect and 24 < rect[3] - rect[1] < 200:
             y = rect[1] + (rect[3] - rect[1] - h) // 2
-            x = rect[2] - round(560 * self.scale)
+            # Default spot (chosen 17 Oct 2026): 426 logical px (639 px at
+            # 150 %) left of the taskbar's right edge.
+            x = rect[2] - round(426 * self.scale)
             try:
                 with open(AIUSAGE_CONFIG, "r", encoding="utf-8") as fh:
                     other_x = json.load(fh).get("x")
                 if other_x is not None:
-                    # 50 = the Claude widget's logical width (COMPACT_W)
-                    x = int(other_x) + round((50 + 10) * self.scale)
+                    # 85.33 = this strip (STRIP_W 80) + the 8 px gap at 150 %
+                    x = int(other_x) - round(85.33 * self.scale)
             except (OSError, ValueError, TypeError):
                 pass
         else:
-            x = round(80 * self.scale)
+            x = self.root.winfo_screenwidth() - round(426 * self.scale)
             y = self.root.winfo_screenheight() - h - round(8 * self.scale)
         return self._clamp(x, y, w, h)
 
