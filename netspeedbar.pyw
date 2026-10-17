@@ -452,9 +452,9 @@ class NetSpeedBar:
         rect = taskbar_rect()
         if rect and 24 < rect[3] - rect[1] < 200:
             y = rect[1] + (rect[3] - rect[1] - h) // 2
-            # Default spot (chosen 17 Oct 2026): 426 logical px (639 px at
+            # Default spot (chosen 17 Oct 2026): 450 logical px (675 px at
             # 150 %) left of the taskbar's right edge.
-            x = rect[2] - round(426 * self.scale)
+            x = rect[2] - round(450 * self.scale)
             try:
                 with open(AIUSAGE_CONFIG, "r", encoding="utf-8") as fh:
                     other_x = json.load(fh).get("x")
@@ -464,7 +464,7 @@ class NetSpeedBar:
             except (OSError, ValueError, TypeError):
                 pass
         else:
-            x = self.root.winfo_screenwidth() - round(426 * self.scale)
+            x = self.root.winfo_screenwidth() - round(450 * self.scale)
             y = self.root.winfo_screenheight() - h - round(8 * self.scale)
         return self._clamp(x, y, w, h)
 
